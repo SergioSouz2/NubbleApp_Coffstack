@@ -2,14 +2,17 @@ import React from 'react';
 import {Alert} from 'react-native';
 
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
-import {RootStackParamList} from '../../../routes/Routes';
 import {useForm} from 'react-hook-form';
 import {zodResolver} from '@hookform/resolvers/zod';
 
-import {Text} from '../../../components/Text/Text';
-import {Button} from '../../../components/Button/Button';
-import {Screen} from '../../../components/Screen/Screen';
-import {FormTextInput} from '../../../components/Form/FormTextInput';
+import {RootStackParamList} from '@routes';
+import {
+   Text,
+   Screen,
+   Button,
+   FormTextInput,
+   FormPasswordInput,
+} from '@components';
 
 import {loginSchema, LoginSchema} from './loginSchima';
 
@@ -55,7 +58,7 @@ export function LoginScreen({navigation}: ScreenProps) {
             boxProps={{mb: 's20'}}
          />
 
-         <FormTextInput
+         <FormPasswordInput
             control={control}
             name="password"
             label="Senha"

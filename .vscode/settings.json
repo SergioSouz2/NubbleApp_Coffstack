@@ -5,6 +5,10 @@
       "Criar",
       "Crie",
       "implementar",
-      "Senha"
-   ]
+      "Senha",
+      "tanstack"
+   ],
+   "editor.codeActionsOnSave": {
+      "source.fixAll.eslint": true
+   }
 }
