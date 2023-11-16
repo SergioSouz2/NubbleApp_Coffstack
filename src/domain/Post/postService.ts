@@ -3,7 +3,7 @@ import {postApi} from './postApi';
 import {Post} from './postTypes';
 
 async function getList(): Promise<Post[]> {
-   const postPageAPI = await postApi.getList();
+   const postPageAPI = await postApi.getList({page: 2});
 
    // throw new Error('Error de teste');
 

@@ -1,12 +1,12 @@
 import {PageAPI, api} from '@api';
-import {PostApi} from './postTypes';
+import {PageParams, PostApi} from './postTypes';
 
-async function getList(): Promise<PageAPI<PostApi>> {
+async function getList(params: PageParams): Promise<PageAPI<PostApi>> {
    //TUDO: simular um delay na API
 
-   await new Promise(resolve => setTimeout(() => resolve(''), 1000));
-
-   const response = await api.get<PageAPI<PostApi>>('user/post');
+   const response = await api.get<PageAPI<PostApi>>('user/post', {
+      params,
+   });
    return response.data;
 }
 

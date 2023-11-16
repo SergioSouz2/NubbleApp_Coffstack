@@ -3,36 +3,13 @@ import {FlatList, ListRenderItemInfo, StyleProp, ViewStyle} from 'react-native';
 
 import {PostItem, Screen} from '@components';
 import {AppTabScreenProps} from '@routes';
-import {Post, postService} from '@domain';
+import {Post, usePostList} from '@domain';
 
 import {HomeHeader} from './components/HomeHeader';
 import {HomeEmpty} from './components/HomeEmpty';
-import {err} from 'react-native-svg/lib/typescript/xml';
 
-export function HomeScreen({navigation}: AppTabScreenProps<'HomeScreen'>) {
-   const [postList, setPostList] = useState<Post[]>([]);
-   const [error, setError] = useState<boolean | null>(null);
-   const [loading, setLoading] = useState(true);
-
-   async function fetchData() {
-      try {
-         setError(null);
-         setLoading(true);
-         postService.getList().then(list => setPostList(list));
-
-         const list = await postService.getList();
-         setPostList(list);
-      } catch (err) {
-         console.log('ERROR: ', err);
-         setError(true);
-      } finally {
-         setLoading(false);
-      }
-   }
-
-   useEffect(() => {
-      fetchData();
-   }, []);
+export function HomeScreen({}: AppTabScreenProps<'HomeScreen'>) {
+   const {postList, error, loading, refetch} = usePostList();
 
    function renderItem({item}: ListRenderItemInfo<Post>) {
       return <PostItem post={item} />;
@@ -50,7 +27,7 @@ export function HomeScreen({navigation}: AppTabScreenProps<'HomeScreen'>) {
             }}
             ListHeaderComponent={<HomeHeader />}
             ListEmptyComponent={
-               <HomeEmpty refetch={fetchData} error={error} loading={loading} />
+               <HomeEmpty refetch={refetch} error={error} loading={loading} />
             }
          />
       </Screen>
