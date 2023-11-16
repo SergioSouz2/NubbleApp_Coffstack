@@ -18,9 +18,9 @@ export function HomeScreen({}: AppTabScreenProps<'HomeScreen'>) {
    return (
       <Screen style={$screen}>
          <FlatList
+            showsVerticalScrollIndicator={false}
             data={postList}
             keyExtractor={item => item.id}
-            showsVerticalScrollIndicator={false}
             renderItem={renderItem}
             contentContainerStyle={{
                flex: postList.length === 0 ? 1 : undefined,
